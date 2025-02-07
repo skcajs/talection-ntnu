@@ -59,6 +59,7 @@ const ButtonAppBar: React.FC<ButtaonAppBarProps> = ({
   const handleAccount = () => {
     navigate("/account");
   };
+
   return (
     <Box
       sx={{ flexGrow: 1, textAlign: "center", height: "80px" }}
@@ -141,7 +142,11 @@ const ButtonAppBar: React.FC<ButtaonAppBarProps> = ({
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/profile");
+                    }}
+                  >
                     <Avatar /> Profile
                     <MenuItem onClick={handleAccount}>
                       <Avatar /> My account
