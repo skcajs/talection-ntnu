@@ -13,23 +13,53 @@ interface LoginProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setToken: (token: string) => void;
 }
 
-const Login: React.FC<LoginProps> = ({ isOpen, setIsOpen, setIsLoggedIn }) => {
+export interface Credentials {
+  email: string;
+  password: string;
+}
+
+async function loginUser(credentials: Credentials) {
+  return fetch("http://localhost:8080/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
+
+const Login: React.FC<LoginProps> = ({
+  isOpen,
+  setIsOpen,
+  setIsLoggedIn,
+  setToken,
+}) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (isSignUp && password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    setIsOpen(false);
-    setIsLoggedIn(true);
+    if (!isSignUp) {
+      const token = await loginUser({
+        email,
+        password,
+      });
+
+      sessionStorage.setItem("token", JSON.stringify(token));
+      setToken(token);
+      setIsOpen(false);
+      setIsLoggedIn(true);
+    }
   };
 
   const handleClose = () => {

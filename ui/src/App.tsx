@@ -12,6 +12,7 @@ import Game from "./components/Game";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import { useState } from "react";
+import { useToken } from "./hooks/useToken";
 
 const darkTheme = createTheme({
   palette: {
@@ -70,11 +71,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
+  const { setToken } = useToken(setIsLoggedIn);
+
   return (
-    <ThemeProvider
-      theme={darkMode ? darkTheme : lightTheme}
-      defaultMode="light"
-    >
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Router>
         <AppHeader
@@ -85,6 +85,7 @@ function App() {
           setDarkMode={setDarkMode}
         />
         <Login
+          setToken={setToken}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           setIsLoggedIn={setIsLoggedIn}
