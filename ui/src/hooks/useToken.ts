@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function useToken(
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
@@ -12,7 +12,7 @@ export function useToken(
     if (token) {
       setIsLoggedIn(true);
     }
-  }, [token, setIsLoggedIn]);
+  }, [setIsLoggedIn, token]);
 
   return { token, setToken };
 }
