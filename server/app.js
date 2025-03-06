@@ -1,6 +1,6 @@
+var express = require("express");
 var createError = require("http-errors");
 const cors = require("cors");
-var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 
@@ -20,5 +20,5 @@ app.use("/users", usersRouter);
 app.use("/login", loginRouter);
 
 app.listen(8080, () =>
-  console.log("API is running on http://localhost:8080/login")
+  console.log("API is running on http://localhost:8080/users")
 );

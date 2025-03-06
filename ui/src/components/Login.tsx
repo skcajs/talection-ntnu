@@ -22,13 +22,35 @@ export interface Credentials {
 }
 
 async function loginUser(credentials: Credentials) {
-  return fetch("http://localhost:8080/login", {
+  const response = await fetch("http://localhost:8080/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
-  }).then((data) => data.json());
+  });
+
+  if (!response.ok) {
+    throw new Error("Login failed");
+  }
+
+  return response.json();
+}
+
+async function signUpUser(credentials: Credentials) {
+  const response = await fetch("http://localhost:8080/users/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!response.ok) {
+    throw new Error("Sign up failed");
+  }
+
+  return response.json();
 }
 
 const Login: React.FC<LoginProps> = ({
@@ -50,15 +72,27 @@ const Login: React.FC<LoginProps> = ({
     }
 
     if (!isSignUp) {
-      const token = await loginUser({
-        email,
-        password,
-      });
+      try {
+        const { token } = await loginUser({ email, password });
 
-      sessionStorage.setItem("token", JSON.stringify(token));
-      setToken(token);
-      setIsOpen(false);
-      setIsLoggedIn(true);
+        sessionStorage.setItem("token", JSON.stringify(token));
+        setToken(token);
+        setIsOpen(false);
+        setIsLoggedIn(true);
+      } catch {
+        alert("Login failed");
+      }
+    } else {
+      try {
+        const { token } = await signUpUser({ email, password });
+
+        sessionStorage.setItem("token", JSON.stringify(token));
+        setToken(token);
+        setIsOpen(false);
+        setIsLoggedIn(true);
+      } catch {
+        alert("Sign up failed");
+      }
     }
   };
 
