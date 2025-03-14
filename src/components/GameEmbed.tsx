@@ -4,15 +4,21 @@
 import { useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 
-export default function GameEmbed() {
+
+
+interface GameEmbedProps {
+  gameId: string;
+}
+
+const GameEmbed: React.FC<GameEmbedProps> = ({ gameId }) => {
+
   const theme = useTheme(); //
 
   useEffect(() => {
     // Create a script element
     const script = document.createElement("script");
-    script.src = `https://cdn.htmlgames.com/embed.js?game=Daily2Queens&bgcolor=${
-      theme.palette.mode === "dark" ? "black" : "white"
-    }`; //
+    script.src = `https://cdn.htmlgames.com/embed.js?game=Daily2Queens&bgcolor=${theme.palette.mode === "dark" ? "black" : "white"
+      }`; //
     script.async = true; // Load asynchronously for performance
 
     // Append the script to the div
@@ -30,11 +36,7 @@ export default function GameEmbed() {
       }
     };
   }, [theme.palette.mode]); //
-  interface GameEmbedProps {
-    gameId: string;
-}
 
-const GameEmbed: React.FC<GameEmbedProps> = ({ gameId }) => {
   return (
     <Box
       sx={{
@@ -73,3 +75,5 @@ const GameEmbed: React.FC<GameEmbedProps> = ({ gameId }) => {
     </Box>
   );
 }
+
+export default GameEmbed;

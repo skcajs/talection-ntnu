@@ -5,7 +5,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import AppHeader from "./components/AppHeader";
-import UserAccount from "./components/UserAccount";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -14,6 +13,7 @@ import Game from "./components/Game";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import { useState, useMemo } from "react";
+import GameController from "./components/GameController";
 
 //  Function to dynamically switch between light and dark mode
 const getTheme = (darkMode: boolean) =>
@@ -53,7 +53,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/account" element={<UserAccount />} />
             <Route path="/game" element={<Game />} />
             <Route path="/game/:gameType" element={<GameController />} />
           </Routes>

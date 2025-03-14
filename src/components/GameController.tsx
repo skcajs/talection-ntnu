@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import GameEmbed from "./components/GameEmbed";
+import GameEmbed from "./GameEmbed";
 
 const games = [
   { id: "game1", name: "Game 1" },
