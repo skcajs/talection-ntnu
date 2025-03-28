@@ -4,14 +4,7 @@
 import { useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 
-
-
-interface GameEmbedProps {
-  gameId: string;
-}
-
-const GameEmbed: React.FC<GameEmbedProps> = ({ gameId }) => {
-
+const GameEmbed = () => {
   const theme = useTheme(); //
 
   useEffect(() => {
@@ -76,4 +69,4 @@ const GameEmbed: React.FC<GameEmbedProps> = ({ gameId }) => {
   );
 }
 
-export default GameEmbed;
+export default GameEmbed
