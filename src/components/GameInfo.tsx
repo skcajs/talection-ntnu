@@ -76,7 +76,7 @@ const GameInfo: React.FC<GameInfoProps> = ({
           }}
           onClick={() => {
             handleClose();
-            navigate("/game");
+            navigate(`/game/${name_of_game}`); // Replace with actual game ID
           }}
         >
           Start

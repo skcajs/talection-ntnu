@@ -10,7 +10,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import theme from "./components/theme";
-import Game from "./components/Game";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import { useState, useMemo } from "react";
@@ -55,7 +54,7 @@ function App() {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/account" element={<UserAccount />} />
-            <Route path="/game" element={<Game />} />
+            {/* <Route path="/game" element={<Game />} /> */}
             <Route path="/game/:gameType" element={<GameController />} />
           </Routes>
         </div>
