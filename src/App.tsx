@@ -13,7 +13,12 @@ import theme from "./components/theme";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import { useState, useMemo } from "react";
+<<<<<<< HEAD
 import GameController from "./components/GameController";
+=======
+import Questionnaire from "./components/Questionnaire";
+import IntFluidController from "./components/games/intFluid/IntFluidController";
+>>>>>>> 43e00a220e41e4d398137d9726d828877ef0ba39
 
 //  Function to dynamically switch between light and dark mode
 const getTheme = (darkMode: boolean) =>
@@ -54,8 +59,14 @@ function App() {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/account" element={<UserAccount />} />
+<<<<<<< HEAD
             {/* <Route path="/game" element={<Game />} /> */}
             <Route path="/game/:gameType" element={<GameController />} />
+=======
+            <Route path="/game" element={<Game />} />
+            <Route path="/test" element={<Questionnaire />} />
+            <Route path="/test2" element={<IntFluidController />} />
+>>>>>>> 43e00a220e41e4d398137d9726d828877ef0ba39
           </Routes>
         </div>
       </Router>
